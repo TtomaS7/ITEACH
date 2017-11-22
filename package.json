@@ -1,0 +1,28 @@
+{
+  "name": "electron",
+  "version": "0.1.0",
+  "main": "src/main.js",
+  "dependencies": {
+    "electron": "^1.7.9",
+    "electron-builder": "^19.45.5",
+    "foreman": "^2.0.0",
+    "global": "^4.3.2",
+    "globally": "^0.0.0",
+    "react": "^16.1.1",
+    "react-big-calendar": "^0.17.0",
+    "react-dom": "^16.1.1",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "nf start -p 3000",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "electron-start": "node src/electron-wait-react",
+    "react-start": "react-scripts start",
+    "pack": "build --dir",
+    "dist": "npm run build && build",
+    "postinstall": "install-app-deps"
+  }
+}
