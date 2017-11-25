@@ -8,10 +8,14 @@
     "foreman": "^2.0.0",
     "global": "^4.3.2",
     "globally": "^0.0.0",
+    "moment": "^2.19.2",
     "react": "^16.1.1",
     "react-big-calendar": "^0.17.0",
     "react-dom": "^16.1.1",
-    "react-scripts": "1.0.17"
+    "react-event-calendar": "^0.3.0",
+    "react-flip-move": "^2.9.17",
+    "react-scripts": "1.0.17",
+    "react-skylight": "^0.5.0"
   },
   "scripts": {
     "start": "nf start -p 3000",
@@ -24,5 +28,8 @@
     "pack": "build --dir",
     "dist": "npm run build && build",
     "postinstall": "install-app-deps"
+  },
+  "devDependencies": {
+    "firebase": "^4.6.2"
   }
 }
