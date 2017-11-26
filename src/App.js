@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import firebase from './firebase.js';
-import './App_s.css';
+import Calendar from './components/Calendar';
+import Lessons from './components/Lessons';
+import './css/index.css';
 
 class App extends Component {
   constructor() {
@@ -57,42 +59,48 @@ class App extends Component {
   render() {
     return (
       <div className='app'>
-        <header>
-            <div className='wrapper'>
-              <h1>Добавить класс и тему</h1>
-
-            </div>
-        </header>
-        <div className='container'>
-        <section className="add-item">
-        <form onSubmit={this.handleSubmit}>
-          <input type="number" name="klas" placeholder="Класс" onChange={this.handleChange} value={this.state.klas} />
-          <input type="text" name="tema" placeholder="Тема" onChange={this.handleChange} value={this.state.tema} />
-          <button>Добавить</button>
-        </form>
-        </section>
-        <section className='display-item'>
-          <div className="wrapper">
-            <ul>
-              {this.state.items.map((item) => {
-                return (
-                  <li key={item.id}>
-                    <h3>{item.main_title} класс</h3>
-                    <p>Тема: {item.main_tema}
-                    <div className='but'>
-                      <button onClick={() => this.removeItem(item.id)}>Удалить</button>
-                      <button >Добавить файлы</button>
-                    </div>
-                    </p>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </section>
-        </div>
+        <Calendar />
+        <Lessons />
       </div>
     );
   }
 }
+
+// <div className='app'>
+//   <Calendar />
+//   <header>
+//       <div className='wrapper'>
+//         <h1>Добавить класс и тему</h1>
+//
+//       </div>
+//   </header>
+//   <div className='container'>
+//   <section className="add-item">
+//   <form onSubmit={this.handleSubmit}>
+//     <input type="number" name="klas" placeholder="Класс" onChange={this.handleChange} value={this.state.klas} />
+//     <input type="text" name="tema" placeholder="Тема" onChange={this.handleChange} value={this.state.tema} />
+//     <button>Добавить</button>
+//   </form>
+//   </section>
+//   <section className='display-item'>
+//     <div className="wrapper">
+//       <ul>
+//         {this.state.items.map((item) => {
+//           return (
+//             <li key={item.id}>
+//               <h3>{item.main_title} класс</h3>
+//               <p>Тема: {item.main_tema}
+//               <div className='but'>
+//                 <button onClick={() => this.removeItem(item.id)}>Удалить</button>
+//                 <button >Добавить файлы</button>
+//               </div>
+//               </p>
+//             </li>
+//           )
+//         })}
+//       </ul>
+//     </div>
+//   </section>
+//   </div>
+// </div>
 export default App;

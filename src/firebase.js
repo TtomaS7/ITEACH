@@ -1,4 +1,6 @@
-import firebase from 'firebase'
+import firebase from 'firebase';
+import 'firebase/firestore';
+
 const config = {
     apiKey: "AIzaSyDmHq-PlVqobtdMA2iccKN86vpDZjPmGWU",
     authDomain: "iteach-182f6.firebaseapp.com",
