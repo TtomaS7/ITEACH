@@ -85,6 +85,7 @@ export const addFileToLesson = (data) => {
       .then(snapshot => {
         const url = snapshot.downloadURL;
         const lessonFiles = data.files || [];
+        console.log(data)
         db.collection('lessons').doc(data.id).update({
           "files": [...lessonFiles, { name: data.file.name, url }],
         }).then(() => {
