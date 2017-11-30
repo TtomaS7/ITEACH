@@ -15,12 +15,11 @@ class Lessons extends React.Component {
   addFile = (data) => {
     this.props.dispatch(actions.addFileToLesson(data));
   }
-  didComponentUpdate(){
 
-  }
   loadSomeLesson = (data) => {
     this.props.dispatch(actions.loadLessons(data));
   }
+
   render() {
     return (
       <div>
