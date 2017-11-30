@@ -81,11 +81,11 @@ export const loadLessons = (date) => {
 
 export const addFileToLesson = (data) => {
   return (dispatch, getState) => {
+
     firebase.storage().ref('images/' + data.file.name).put(data.file)
       .then(snapshot => {
         const url = snapshot.downloadURL;
         const lessonFiles = data.files || [];
-        console.log(data)
         db.collection('lessons').doc(data.id).update({
           "files": [...lessonFiles, { name: data.file.name, url }],
         }).then(() => {

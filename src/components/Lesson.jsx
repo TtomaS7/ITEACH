@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import * as actions from '../actions';
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -45,6 +46,9 @@ class Lesson extends React.Component {
   closeModal() {
     this.setState({modalIsOpen: false});
   }
+  loadSomeLesson = (data) => {
+    this.props.dispatch(actions.loadLessons(data));
+  }
   render() {
     const files = this.props.lesson.files || [];
     return (
@@ -52,7 +56,7 @@ class Lesson extends React.Component {
         {this.props.lesson.className} : {this.props.lesson.topic}
         <br/>
           <div>
-            <button onClick={this.openModal}>Open Modal</button>
+            <button onClick={this.openModal} loadSomeLesson={this.loadSomeLesson}>Open Modal</button>
             <Modal
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}
@@ -69,7 +73,7 @@ class Lesson extends React.Component {
                   </div>
                 )
               })}
-              <button onClick={this.closeModal}>close</button>
+              <button onClick={this.closeModal} >close</button>
               <div>I am a modal</div>
             </Modal>
           </div>
