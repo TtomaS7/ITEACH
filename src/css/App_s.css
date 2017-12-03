@@ -21,6 +21,7 @@ button {
   background-color: #bedfff;
   border: 0;
   min-width: 120px;
+  margin: 5px;
   color: #fff;
   font-size: 14px;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
