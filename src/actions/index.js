@@ -24,7 +24,8 @@ export const addLesson = (data) => {
         dispatch(loadngFinished());
         dispatch({
           type: 'ADD_LESSON',
-          ...data,
+          id: docRef.id,
+          ...data
         })
       })
   }

@@ -12,7 +12,8 @@ function addLesson(state, action) {
       ...lessonsOnDate,
       {
         className: action.className,
-        topic: action.topic
+        topic: action.topic,
+        id: action.id
       }
     ]
   };

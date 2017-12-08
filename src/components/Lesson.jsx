@@ -46,9 +46,7 @@ class Lesson extends React.Component {
   closeModal() {
     this.setState({modalIsOpen: false});
   }
-  loadSomeLesson = (data) => {
-    this.props.dispatch(actions.loadLessons(data));
-  }
+  
   render() {
     const files = this.props.lesson.files || [];
     return (
@@ -56,7 +54,7 @@ class Lesson extends React.Component {
         {this.props.lesson.className} : {this.props.lesson.topic}
         <br/>
           <div>
-            <button onClick={this.openModal} loadSomeLesson={this.loadSomeLesson}>Open Modal</button>
+            <button onClick={this.openModal}>Open Modal</button>
             <Modal
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}
@@ -66,9 +64,9 @@ class Lesson extends React.Component {
             >
               <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
               <input type="file" onChange={this.onAddFile.bind(this)} ref={el => {this.file = el}}/>
-              {files.map(file => {
+              {files.map((file, index) => {
                 return (
-                  <div>
+                  <div key={index}>
                     <a href={file.url}> {file.name} </a>
                   </div>
                 )

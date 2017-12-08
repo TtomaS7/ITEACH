@@ -21,6 +21,7 @@ class Lessons extends React.Component {
   }
 
   render() {
+    console.log('Lessons Props', this.props.lessons)
     return (
       <div>
         <AddLesson onLessonAdd={this.onLessonAdd}/>
