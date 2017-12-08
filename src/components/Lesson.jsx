@@ -2,7 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
+
 import Modal from 'react-modal';
+Modal.setAppElement('#root');
+Modal.defaultStyles.overlay.zIndex = 1000;
 
 const customStyles = {
   content : {
@@ -46,7 +49,7 @@ class Lesson extends React.Component {
   closeModal() {
     this.setState({modalIsOpen: false});
   }
-  
+
   render() {
     const files = this.props.lesson.files || [];
     return (
