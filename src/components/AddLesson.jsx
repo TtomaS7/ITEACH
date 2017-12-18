@@ -8,17 +8,6 @@ export default class AddLesson extends React.Component {
   constructor() {
     super();
 
-    const provider = new firebase.auth.FacebookAuthProvider();
-
-    firebase.auth().onAuthStateChanged(firebaseUser => {
-      if (firebaseUser){
-        console.log(firebaseUser);
-
-      } else {
-        console.log('not logged in');
-      }
-    })
-
     this.state = {
       user: null
     }
@@ -36,41 +25,9 @@ export default class AddLesson extends React.Component {
     })
   }
 
-  onLogIn = () => {
-    const  email = this.txtLogin.value;
-    const  pass = this.txtPassword.value;
-    const  auth = firebase.auth();
-
-    const promise = auth.signInWithEmailAndPassword(email, pass);
-    promise.catch(e => console.log(e.message));
-  }
-
-  onSignUp = () => {
-    const  email = this.txtLogin.value;
-    const  pass = this.txtPassword.value;
-    const  auth = firebase.auth();
-
-    const promise = auth.createUserWithEmailAndPassword(email, pass);
-    promise.catch(e => console.log(e.message));
-  }
-
-  onSignOut = () => {
-    firebase.auth().signOut();
-  }
-
   render() {
     return (
       <div>
-        <input className="main_input_login" ref={el => {this.txtLogin = el}} type="text" placeholder="Login" />
-        <br/>
-        <input className="main_input_password" ref={el => {this.txtPassword = el}} type="text"  placeholder="Password" />
-        <br/>
-        <button onClick={this.onLogIn}>Log In</button>
-        <br/>
-        <button onClick={this.onSignUp}>Sign Up</button>
-        <br/>
-        <button className="logOut" onClick={this.onSignOut}>Sign Out</button>
-        <br/>
         <br/>
         <br/>
         <br/>

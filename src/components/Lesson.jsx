@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import * as actions from '../actions';
 
+import '../css/Loading.css';
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
 Modal.defaultStyles.overlay.zIndex = 1000;
@@ -23,7 +24,8 @@ class Lesson extends React.Component {
     super();
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      loading: true
     };
 
     this.openModal = this.openModal.bind(this);
@@ -67,8 +69,17 @@ class Lesson extends React.Component {
             >
               <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
               <input type="file" onChange={this.onAddFile.bind(this)} ref={el => {this.file = el}}/>
+              {this.props.loading &&
+                <div className="spinner">
+                  <div className="bounce1"></div>
+                  <div className="bounce2"></div>
+                  <div className="bounce3"></div>
+                </div>
+              }
+              <br/>
               {files.map((file, index) => {
                 return (
+
                   <div key={index}>
                     <a href={file.url}> {file.name} </a>
                   </div>
@@ -84,4 +95,18 @@ class Lesson extends React.Component {
   }
 }
 
-export default Lesson;
+
+const ConnectedLessons = connect(
+  (state) => {
+    return {
+      loading: state.app.loading,
+    }
+  },
+  (dispatch) => {
+    return {
+      dispatch
+    }
+  }
+)(Lesson)
+
+export default ConnectedLessons;

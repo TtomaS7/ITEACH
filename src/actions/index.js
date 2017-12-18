@@ -16,12 +16,12 @@ is equal to
 
 export const addLesson = (data) => {
   return dispatch => {
-    dispatch(loadngStarted());
+    dispatch(loadingStarted());
 
     db.collection('lessons')
       .add(data)
       .then(docRef => {
-        dispatch(loadngFinished());
+        dispatch(loadingFinished());
         dispatch({
           type: 'ADD_LESSON',
           id: docRef.id,
@@ -45,13 +45,13 @@ export const selectDate = (date) => {
   }
 }
 
-export const loadngStarted = () => {
+export const loadingStarted = () => {
   return {
     type: 'LOADING_STARTED'
   }
 }
 
-export const loadngFinished = () => {
+export const loadingFinished = () => {
   return {
     type: 'LOADING_FINISHED'
   }
@@ -59,7 +59,7 @@ export const loadngFinished = () => {
 
 export const loadLessons = (date) => {
   return dispatch => {
-    dispatch(loadngStarted());
+    dispatch(loadingStarted());
 
     let lessons = [];
     db.collection('lessons')
@@ -75,13 +75,14 @@ export const loadLessons = (date) => {
           date,
           lessons
         }))
-        dispatch(loadngFinished())
+        dispatch(loadingFinished())
       })
   };
 }
 
 export const addFileToLesson = (data) => {
   return (dispatch, getState) => {
+    dispatch(loadingStarted());
 
     firebase.storage().ref('images/' + data.file.name).put(data.file)
       .then(snapshot => {
@@ -92,6 +93,7 @@ export const addFileToLesson = (data) => {
         }).then(() => {
           const state = getState();
           dispatch(loadLessons(state.app.selectedDate));
+          dispatch(loadingFinished())
         })
         // dispatch(updateLesson({
         //   id: data.id,

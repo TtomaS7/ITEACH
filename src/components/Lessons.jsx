@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import AddLesson from './AddLesson';
 import * as actions from '../actions';
 import Lesson from './Lesson';
+import '../css/Loading.css';
 
 class Lessons extends React.Component {
   onLessonAdd = (data) => {
@@ -25,10 +27,17 @@ class Lessons extends React.Component {
     return (
       <div>
         <AddLesson onLessonAdd={this.onLessonAdd}/>
-        {this.props.loading && "Loading 3...2...1..." }
+        {this.props.loading &&
+          <div className="spinner">
+            <div className="bounce1"></div>
+            <div className="bounce2"></div>
+            <div className="bounce3"></div>
+          </div>
+        }
         {this.props.lessons.map(lesson => {
           return <Lesson key={lesson.id} lesson={lesson} addFile={this.addFile} loadSomeLesson={this.loadSomeLesson}/>
         })}
+
       </div>
     );
   }
