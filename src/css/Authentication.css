@@ -24,11 +24,11 @@ body {
 	color: #fff;
   padding-top: 100px;
   text-align: center;
-	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background: linear-gradient(-45deg, #cbcbcb, #6b8c9c, #496674);
 	background-size: 400% 400%;
-	-webkit-animation: Gradient 15s ease infinite;
-	-moz-animation: Gradient 15s ease infinite;
-	animation: Gradient 15s ease infinite;
+	-webkit-animation: Gradient 5s ease infinite;
+	-moz-animation: Gradient 5s ease infinite;
+	animation: Gradient 5s ease infinite;
 }
 .main_auth{
   margin: 100px auto;
@@ -100,7 +100,7 @@ input[type=password] {
   transition: all .2s ease-in-out;
 }
 button {
-  background: #079BCF;
+  background: #496674;
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -111,7 +111,7 @@ button {
   width: 100%;
   margin-bottom: 10px;
   overflow: hidden;
-  transition: all .3s cubic-bezier(.6,0,.4,1);
+  transition: all .3s linear;
 }
 button span {
   display: block;
@@ -121,7 +121,7 @@ button span {
   transform: translate3d(0,0,0);
 }
 button:hover {
-  background: #007BA5;
+  background: #1E3E4E;
 }
 
 #arrow {
@@ -148,7 +148,7 @@ h1 {
   font-family: 'Righteous', serif;
   font-size: 12em;
   text-align: center;
-  text-shadow: .03em .03em 0 hsla(230,40%,50%,1);
+  text-shadow: .03em .03em 0 #f9c4be;
 }
 
 

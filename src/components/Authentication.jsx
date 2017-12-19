@@ -61,6 +61,7 @@ export default class Authentication extends React.Component {
 
     const promise = auth.signInWithEmailAndPassword(email, pass);
     promise.catch(e => console.log(e.message));
+    debugger;
   }
 
   onSignUp = () => {
@@ -68,10 +69,8 @@ export default class Authentication extends React.Component {
     const  pass = this.txtPassword.value;
     const  resetPass = this.txtResetPassword.value;
     const  auth = firebase.auth();
-    debugger;
-
-      const promise = auth.createUserWithEmailAndPassword(email, pass);
-      promise.catch(e => console.log(e.message));
+    const promise = auth.createUserWithEmailAndPassword(email, pass);
+    promise.catch(e => console.log(e.message));
   }
 
   onSignOut = () => {
