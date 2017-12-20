@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import Calendar from './Calendar';
-import * as actions from '../actions';
 import swal from 'sweetalert'
 import firebase from 'firebase';
 import '../css/Authentication.css';
