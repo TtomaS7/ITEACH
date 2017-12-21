@@ -25,7 +25,7 @@ class Lessons extends React.Component {
   render() {
     console.log('Lessons Props', this.props.lessons)
     return (
-      <div>
+      <div className='lessons'>
         <AddLesson onLessonAdd={this.onLessonAdd}/>
         {this.props.loading &&
           <div className="spinner">

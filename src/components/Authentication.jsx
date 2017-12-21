@@ -10,44 +10,25 @@ import '../css/Authentication.css';
 export default class Authentication extends React.Component {
   constructor() {
     super();
-
     const provider = new firebase.auth.FacebookAuthProvider();
-    window.firebase = firebase
-    firebase.auth().onAuthStateChanged(firebaseUser => {
-      if (firebaseUser){
-        console.log(firebaseUser);
-        console.log('logged in');
-        document.getElementsByClassName('auth')[0].style.display = 'none';
-      } else {
-        console.log('not logged in');
-        document.getElementsByClassName('auth')[0].style.display = 'block';
-
-      }
-    })
-
-    this.state = {
-      user: null
-    }
   }
 
   buttonSignUp = () => {
-        document.getElementsByClassName('butLogIn')[0].style.display = 'none';
-        document.getElementsByClassName('butSignUp')[0].style.display = 'block';
-
+    document.getElementsByClassName('butLogIn')[0].style.display = 'none';
+    document.getElementsByClassName('butSignUp')[0].style.display = 'block';
   }
 
   buttonSignIn = () => {
-        document.getElementsByClassName('butLogIn')[0].style.display = 'block';
-        document.getElementsByClassName('butSignUp')[0].style.display = 'none';
-
+    document.getElementsByClassName('butLogIn')[0].style.display = 'block';
+    document.getElementsByClassName('butSignUp')[0].style.display = 'none';
   }
 
   on1LessonAdd = () => {
     if (!this.className.value || !this.topic.value) {
       swal("Oops...", "Something went wrong! Please, add class or topic.", "error");
-     return false;
+      return false;
     } else {
-     swal("Good job!", "You addedsomething!", "success")
+      swal("Good job!", "You addedsomething!", "success")
     }
     this.props.onLessonAdd({
       className: this.className.value,
@@ -62,14 +43,13 @@ export default class Authentication extends React.Component {
 
     const promise = auth.signInWithEmailAndPassword(email, pass);
     promise.catch(e => console.log(e.message));
-    debugger;
   }
 
   onSignUp = () => {
-    const  email = this.txtLogin.value;
-    const  pass = this.txtPassword.value;
-    const  resetPass = this.txtResetPassword.value;
-    const  auth = firebase.auth();
+    const email = this.txtLogin.value;
+    const pass = this.txtPassword.value;
+    const resetPass = this.txtResetPassword.value;
+    const auth = firebase.auth();
     const promise = auth.createUserWithEmailAndPassword(email, pass);
     promise.catch(e => console.log(e.message));
   }
@@ -85,13 +65,14 @@ export default class Authentication extends React.Component {
   async login() {
     const provider = new firebase.auth.FacebookAuthProvider();
     const auth = firebase.auth();
-    const result = await auth.signInWithPopup(provider)
-    this.setState({user: result.user});
+    const result = await auth.signInWithPopup(provider).cath(error => {
+      // HANDLE ERROR
+    })
   }
 
-  render() {
+  render () {
     return (
-      <div className='auth' style= {{display : 'none'}}>
+      <div className='auth'>
         <h1 data-shadow='dang!'>ITEACH</h1>
         <div className='main_auth'>
           <form onSubmit={this.onFormSubmit}>

@@ -16,7 +16,7 @@ class Calendar extends React.Component {
     return (
       <InfiniteCalendar
         width={400}
-        height={600}
+        height={window.innerHeight}
         onSelect={this.onUserDateSelect}
       />
     );
