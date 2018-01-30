@@ -36,13 +36,13 @@ export default class Authentication extends React.Component {
     var errorCode = error.code;
     var errorMessage = error.message;
     if (errorCode == 'auth/invalid-email') {
-      swal('1');
+      swal('Упс....тут помилка(');
     } else if (errorCode == 'auth/user-disabled') {
-      swal('2');
+      swal('Упс....тут помилка(');
     } else if (errorCode == 'auth/user-not-found') {
-      swal('3');
+      swal('Упс....тут помилка(');
     } else if (errorCode == 'auth/wrong-password') {
-      swal('4');
+      swal('Упс....тут помилка(');
     } else {
       swal('Упс....тут помилка(')
     }
@@ -62,21 +62,21 @@ export default class Authentication extends React.Component {
         var errorCode = error.code;
         var errorMessage = error.message;
         if (errorCode == 'auth/weak-password') {
-          swal('1');
+          swal('Упс....тут помилка(');
         } else if (errorCode == 'auth/expired-action-code') {
-          swal('2');
+          swal('Упс....тут помилка(');
         } else if (errorCode == 'auth/invalid-action-code') {
-          swal('3');
+          swal('Упс....тут помилка(');
         } else if (errorCode == 'auth/user-disabled') {
-          swal('4');
+          swal('Упс....тут помилка(');
         } else if (errorCode == 'auth/user-not-found') {
-          swal('5');
+          swal('Упс....тут помилка(');
         } else if (errorCode == 'auth/email-already-in-use') {
-          swal('6');
+          swal('Упс....тут помилка(');
         } else if (errorCode == 'auth/invalid-email') {
-          swal('7');
+          swal('Упс....тут помилка(');
         } else if (errorCode == 'auth/operation-not-allowed') {
-          swal('8');
+          swal('Упс....тут помилка(')
         } else {
           swal('Упс....тут помилка(')
         }
