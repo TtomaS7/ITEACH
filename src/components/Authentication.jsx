@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import swal from 'sweetalert'
+import swal from 'sweetalert2';
 import firebase from 'firebase';
 import '../css/Authentication.css';
 
@@ -23,18 +23,7 @@ export default class Authentication extends React.Component {
     document.getElementsByClassName('butSignUp')[0].style.display = 'none';
   }
 
-  on1LessonAdd = () => {
-    if (!this.className.value || !this.topic.value) {
-      swal("Oops...", "Something went wrong! Please, add class or topic.", "error");
-      return false;
-    } else {
-      swal("Good job!", "You addedsomething!", "success")
-    }
-    this.props.onLessonAdd({
-      className: this.className.value,
-      topic: this.topic.value,
-    })
-  }
+
 
   onLogIn = () => {
     const  email = this.txtLogin.value;
@@ -42,20 +31,60 @@ export default class Authentication extends React.Component {
     const  auth = firebase.auth();
 
     const promise = auth.signInWithEmailAndPassword(email, pass);
-    promise.catch(e => console.log(e.message));
+    promise.catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    if (errorCode == 'auth/invalid-email') {
+      swal('1');
+    } else if (errorCode == 'auth/user-disabled') {
+      swal('2');
+    } else if (errorCode == 'auth/user-not-found') {
+      swal('3');
+    } else if (errorCode == 'auth/wrong-password') {
+      swal('4');
+    } else {
+      swal('Упс....тут помилка(')
+    }
+    console.log(error);
+  })
   }
 
   onSignUp = () => {
     const email = this.txtLogin.value;
     const pass = this.txtPassword.value;
-    const resetPass = this.txtResetPassword.value;
+    const repeatPass = this.txtRepeatPassword.value;
     const auth = firebase.auth();
-    const promise = auth.createUserWithEmailAndPassword(email, pass);
-    promise.catch(e => console.log(e.message));
-  }
-
-  onSignOut = () => {
-    firebase.auth().signOut();
+    if (pass === repeatPass){
+      const promise = auth.createUserWithEmailAndPassword(email, pass);
+      promise.catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/weak-password') {
+          swal('1');
+        } else if (errorCode == 'auth/expired-action-code') {
+          swal('2');
+        } else if (errorCode == 'auth/invalid-action-code') {
+          swal('3');
+        } else if (errorCode == 'auth/user-disabled') {
+          swal('4');
+        } else if (errorCode == 'auth/user-not-found') {
+          swal('5');
+        } else if (errorCode == 'auth/email-already-in-use') {
+          swal('6');
+        } else if (errorCode == 'auth/invalid-email') {
+          swal('7');
+        } else if (errorCode == 'auth/operation-not-allowed') {
+          swal('8');
+        } else {
+          swal('Упс....тут помилка(')
+        }
+        console.log(error);
+      })
+    } else {
+      swal('Упс....тут помилка(');
+    }
   }
 
   onFormSubmit = (event) => {
@@ -77,21 +106,21 @@ export default class Authentication extends React.Component {
         <div className='main_auth'>
           <form onSubmit={this.onFormSubmit}>
             <input defaultChecked id='signin' name='action' type='radio' value='signin' />
-            <label htmlFor='signin' onClick={this.buttonSignIn}>Sign in</label>
+            <label htmlFor='signin' onClick={this.buttonSignIn}>Увійти</label>
 
             <input id='signup' name='action' type='radio' value='signup' />
-            <label htmlFor='signup' onClick={this.buttonSignUp}>Sign up</label>
+            <label htmlFor='signup' onClick={this.buttonSignUp}>Зареєструватися</label>
 
             <div id='wrapper'>
               <div id='arrow'></div>
-              <input id='email' className="main_input_login" ref={el => {this.txtLogin = el}} type="text" placeholder="Login" />
-              <input className="main_input_password" ref={el => {this.txtPassword = el}} type="text"  placeholder="Password" />
-              <input className="reset_input_password" ref={el => {this.txtResetPassword = el}} type="text"  placeholder="Reset password" />
+              <input id='email' className="main_input_login" ref={el => {this.txtLogin = el}} type="text" placeholder="Пошта" />
+              <input className="main_input_password" ref={el => {this.txtPassword = el}} type="password"  placeholder="Пароль" />
+              <input className="repeat_input_password" ref={el => {this.txtRepeatPassword = el}} type="password"  placeholder="Введіть пароль вдруге" />
             </div>
-            <button className="butLogIn" onClick={this.onLogIn}>Log In</button>
+            <button className="butLogIn" onClick={this.onLogIn}>Увійти</button>
             <div className="butSignUp" style= {{display : 'none'}}>
-              <button onClick={this.onSignUp}>Sign Up</button>
-              <button onClick={this.login.bind(this)}>Login with Facebook</button>
+              <button onClick={this.onSignUp}>Зареєструватися</button>
+              <button onClick={this.login.bind(this)}>Зареєструватися за допомогою Фейсбука</button>
             </div>
           </form>
         </div>

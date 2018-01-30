@@ -9,7 +9,7 @@ html, body { margin: 0; }
 ::-ms-input-placeholder { color: #DEDFDF; }
 
 body {
-  background: #6ED0F6;
+  background: #FFE2DF;
   color: #fff;
   font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -107,7 +107,7 @@ button {
   cursor: pointer;
   font-family: 'Raleway', sans-serif;
   font-size: 27px;
-  height: 72px;
+  height: 65px;
   width: 100%;
   margin-bottom: 10px;
   overflow: hidden;
@@ -151,6 +151,14 @@ h1 {
   text-shadow: .03em .03em 0 #f9c4be;
 }
 
+.swal-footer button {
+  width: auto;
+  height: auto;
+  text-align: center;
+}
+.swal-footer {
+  text-align: center;
+}
 
 @-webkit-keyframes Gradient {
 	0% {

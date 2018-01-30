@@ -35,11 +35,20 @@ class App extends Component {
       <div>
         {!this.state.user ?
            <Authentication />
+           { /*Скороченный вигляд кожного з компонентів
+                   <input id='email' className="main_input_login" ref={el => {this.txtLogin = el}} type="text" placeholder="Login" />
+                   <input className="main_input_password" ref={el => {this.txtPassword = el}} type="password"  placeholder="Password" />
+                   <input className="repeat_input_password" ref={el => {this.txtRepeatPassword = el}} type="password"  placeholder="Repeat password" />
+
+                 <button className="butLogIn" onClick={this.onLogIn}>Log In</button>
+                   <button onClick={this.onSignUp}>Sign Up</button>
+                   <button onClick={this.login.bind(this)}>Login with Facebook</button>
+            */}
          :
            <div className='app'>
              <header>
                <div className="wrapper header">
-                 <button className='sign-out' onClick={this.onSignOut}>Вийти</button>
+                 <button className='sign-out' onClick={this.onSignOut}>Sign-out</button>
                </div>
              </header>
              <div className='mainContent'>

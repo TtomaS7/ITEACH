@@ -4,18 +4,30 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import '../css/Loading.css';
+import '../css/ModalWindow.css';
+import close from '../img/delete.svg';
+
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
 Modal.defaultStyles.overlay.zIndex = 1000;
 
 const customStyles = {
   content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    top                        : '50%',
+    left                       : '50%',
+    right                      : 'auto',
+    bottom                     : 'auto',
+    width                      : '600px',
+    height                     : 'auto',
+    marginRight                : '-50%',
+    transform                  : 'translate(-50%, -50%)',
+    border                     : '2px solid #ccc',
+    background                 : '#fff',
+    overflow                   : 'auto',
+    WebkitOverflowScrolling    : 'touch',
+    borderRadius               : '4px',
+    outline                    : 'none',
+    padding                    : '0px',
   }
 };
 
@@ -45,7 +57,7 @@ class Lesson extends React.Component {
   }
 
   afterOpenModal() {
-    this.subtitle.style.color = '#f00';
+
   }
 
   closeModal() {
@@ -56,10 +68,13 @@ class Lesson extends React.Component {
     const files = this.props.lesson.files || [];
     return (
       <div>
-        {this.props.lesson.className} : {this.props.lesson.topic}
-        <br/>
+        <div className='display-item'>
           <div>
-            <button onClick={this.openModal}>Open Modal</button>
+            <p> Клас:  {this.props.lesson.className}</p>
+            <p> Тема:  {this.props.lesson.topic}</p>
+            <button onClick={this.openModal}>Робота з файлами</button>
+          </div>
+        </div>
             <Modal
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}
@@ -67,29 +82,39 @@ class Lesson extends React.Component {
               style={customStyles}
               contentLabel="Example Modal"
             >
-              <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-              <input type="file" onChange={this.onAddFile.bind(this)} ref={el => {this.file = el}}/>
-              {this.props.loading &&
-                <div className="spinner">
-                  <div className="bounce1"></div>
-                  <div className="bounce2"></div>
-                  <div className="bounce3"></div>
-                </div>
-              }
-              <br/>
-              {files.map((file, index) => {
-                return (
-
-                  <div key={index}>
-                    <a href={file.url}> {file.name} </a>
+            <div className='modalWindow'>
+              <div className="head">
+                <a className="btn-close trigger" href="#">
+                  <img className="close" src={close} width="20" alt="close"/>
+                </a>
+              </div>
+              <div className='content'>
+                <label className="fileContainer">
+                  Клікніть тут, щоб додати файли
+                  <input type="file" onChange={this.onAddFile.bind(this)} ref={el => {this.file = el}}/>
+                </label>
+                {this.props.loading &&
+                  <div className="spinner">
+                    <div className="bounce1"></div>
+                    <div className="bounce2"></div>
+                    <div className="bounce3"></div>
                   </div>
-                )
-              })}
-              <button onClick={this.closeModal} >close</button>
-              <div>I am a modal</div>
+                }
+                <br/>
+                {files.map((file, index) => {
+                  return (
+
+                    <div key={index} className='links'>
+                      <a href={file.url}> {file.name} </a>
+                    </div>
+                  )
+                })}
+                <div className='buttonModal'>
+                  <button className='buttonModal' onClick={this.closeModal} >Закрити</button>
+                </div>
+              </div>
+            </div>
             </Modal>
-          </div>
-        <hr/>
       </div>
     );
   }

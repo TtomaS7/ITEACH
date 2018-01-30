@@ -1,15 +1,12 @@
 .app {
   display: flex;
+  flex-direction: column;
 }
+.mainContent{
+  display: flex;
+}
+
 body {
   overflow-x: hidden;
   overflow-y: hidden;
-}
-
-html, body {
-  height: 100vh;
-}
-
-.lessons {
-  margin-left: 20px;
 }

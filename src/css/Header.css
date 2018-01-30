@@ -1,0 +1,39 @@
+header {
+  color: #fff;
+  background-color: #496674;
+  position: absolute;
+  height: 98px;
+  width: 100%;
+  line-height: 98px;
+
+}
+
+header h1 {
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding-left: 15px;
+  display: inline-block;
+
+}
+header button {
+  background-color: #1E3E4E;
+}
+header button:hover {
+  background-color: #687F8B;
+}
+.header {
+  display: block;
+  margin-right: 25px;
+  margin-left: 400px;
+  max-width: 100%;
+}
+
+.sign-out {
+    display:inline-block;
+    width: 150px;
+    float: right;
+    background-color: #;
+    margin-top: 19px;
+
+}

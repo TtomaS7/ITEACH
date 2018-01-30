@@ -4,6 +4,8 @@ import 'react-infinite-calendar/styles.css';
 import { connect } from 'react-redux'
 
 import * as actions from '../actions';
+import '../css/MainPage.css';
+
 
 class Calendar extends React.Component {
 
@@ -18,6 +20,20 @@ class Calendar extends React.Component {
         width={400}
         height={window.innerHeight}
         onSelect={this.onUserDateSelect}
+        theme={{
+          selectionColor: '#687F8B',
+          textColor: {
+            default: '#333',
+            active: '#fff'
+          },
+          weekdayColor: '#687F8B',
+          headerColor: '#496674',
+          floatingNav: {
+            background: '#687F8B',
+            color: '#FFF',
+            chevron: '#FFA726'
+          }
+       }}
       />
     );
   }

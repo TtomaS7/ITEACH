@@ -1,0 +1,72 @@
+.modalWindow{
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+}
+.head {
+  width: 100%;
+  height: 32px;
+  padding: 12px 20px;
+  overflow: hidden;
+  background: #496674;
+}
+
+.btn-close {
+  font-size: 28px;
+  display: block;
+  float: right;
+  color: #fff;
+}
+
+.content {
+  padding: 40px 20px 20px 20px;
+}
+.fileContainer {
+  overflow: hidden;
+  position: relative;
+  color: red;
+}
+
+.fileContainer [type=file] {
+  cursor: inherit;
+  display: block;
+  font-size: 999px;
+  filter: alpha(opacity=0);
+  min-height: 100%;
+  min-width: 100%;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
+}
+.links {
+  margin: 5px;
+}
+.links a {
+  color: #000;
+  text-decoration: none;
+}
+.buttonModal button {
+  width: 150px;
+  height: 50px;
+  margin:  0 225px;
+  text-align: center;
+}
+
+.links a[href$='.doc'], a[href$='.docx'] {
+    background: transparent url(../img/word.png) center right no-repeat;
+    padding-right: 18px;
+}
+a[href$='.xls'], a[href$='.xlsx'] {
+    background: transparent url(../img/word.png) center right no-repeat;
+    padding-right: 18px;
+}
+a[href$='.pdf'] {
+    background: transparent url(../img/word.png) center left no-repeat;
+    padding-left: 18px;
+}
+a[href$='.zip'] {
+    background: transparent url(../img/word.png) center left no-repeat;
+    padding-left: 18px;
+}

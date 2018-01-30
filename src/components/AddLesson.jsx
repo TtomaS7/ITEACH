@@ -1,8 +1,7 @@
 import React from 'react';
 
-import swal from 'sweetalert'
+import swal from 'sweetalert2'
 import firebase from 'firebase';
-import  '../css/App_s.css'
 
 export default class AddLesson extends React.Component {
   constructor() {
@@ -14,10 +13,14 @@ export default class AddLesson extends React.Component {
   }
   onLessonAdd = () => {
     if (!this.className.value || !this.topic.value) {
-      swal("Oops...", "Something went wrong! Please, add class or topic.", "error");
+      swal(
+        'Оууу...',
+        'Щось пішло не так!',
+        'error'
+      )
      return false;
    } else {
-     swal("Good job!", "You addedsomething!", "success")
+     swal("Молодець!", "Ти додав урок)", "success")
    }
     this.props.onLessonAdd({
       className: this.className.value,
@@ -27,15 +30,12 @@ export default class AddLesson extends React.Component {
 
   render() {
     return (
-      <div>
-        <br/>
-        <br/>
-        <br/>
-        <input className="main_input_class" ref={el => {this.className = el}} type="text" placeholder="Класс" />
+      <div className='mainAdd'>
+        <input className="main_input_class" ref={el => {this.className = el}} type="text" placeholder="Клас" />
         <br/>
         <input className="main_input_topic" ref={el => {this.topic = el}} type="text"  placeholder="Тема" />
         <br/>
-        <button onClick={this.onLessonAdd}>Добавить</button>
+        <button onClick={this.onLessonAdd}>Додати</button>
       </div>
     );
   }
