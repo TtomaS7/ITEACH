@@ -1,3 +1,7 @@
+import firebase from 'firebase';
+
+const user = firebase.auth().currentUser;
+
 const DEFAULT_STATE = {
   selectedDate: new Date().toDateString(),
   loading: false,
@@ -6,6 +10,7 @@ const DEFAULT_STATE = {
 
 function addLesson(state, action) {
   const lessonsOnDate = state.lessons[action.date] || [];
+  const uid = firebase.auth().currentUser.uid
   const lessons = {
     ...state.lessons,
     [action.date]: [
@@ -13,7 +18,8 @@ function addLesson(state, action) {
       {
         className: action.className,
         topic: action.topic,
-        id: action.id
+        id: action.id,
+        uid
       }
     ]
   };

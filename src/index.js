@@ -13,11 +13,10 @@ import * as actions from './actions';
 
 let store = createStore(storeReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk))
 const date = store.getState().app.selectedDate;
-store.dispatch(actions.loadLessons(date))
 
 ReactDOM.render(
   <Provider store={store}>
-    <App/>
+    <App store={store} date={date}/>
   </Provider>,
   document.getElementById('root')
 );

@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 
 const db = firebase.firestore();
+const user = firebase.auth().currentUser;
 /*
 @NOTE: Object spreading
 {
@@ -17,9 +18,10 @@ is equal to
 export const addLesson = (data) => {
   return dispatch => {
     dispatch(loadingStarted());
+    const uid = firebase.auth().currentUser.uid
 
     db.collection('lessons')
-      .add(data)
+      .add({ ...data, uid })
       .then(docRef => {
         dispatch(loadingFinished());
         dispatch({
@@ -60,10 +62,11 @@ export const loadingFinished = () => {
 export const loadLessons = (date) => {
   return dispatch => {
     dispatch(loadingStarted());
-
     let lessons = [];
+    console.log('uid', firebase.auth().currentUser.uid);
     db.collection('lessons')
       .where('date', '==', date)
+      .where('uid', '==', firebase.auth().currentUser.uid)
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
@@ -71,6 +74,7 @@ export const loadLessons = (date) => {
           newDoc.id = doc.id;
           lessons.push(newDoc);
         })
+        console.log('les', lessons);
         dispatch(addLessonsByDate({
           date,
           lessons

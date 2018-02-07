@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import firebase from './firebase.js';
+import storeReducers from './store/reducers';
+import { createStore, applyMiddleware } from 'redux'
+import registerServiceWorker from './registerServiceWorker';
+import * as actions from './actions';
 import Calendar from './components/Calendar';
 import Lessons from './components/Lessons';
 import Authentication from './components/Authentication';
@@ -18,6 +22,7 @@ class App extends Component {
     window.firebase = firebase
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
+        this.props.store.dispatch(actions.loadLessons(this.props.date));
         console.log(firebaseUser);
         console.log('logged in');
         this.setState({ user: firebaseUser });
@@ -34,7 +39,7 @@ class App extends Component {
     return (
       <div>
         {!this.state.user ?
-           <Authentication />
+           <Authentication store={this.props.store} date={this.props.date}/>
          :
            <div className='app'>
              <header>

@@ -42,7 +42,7 @@ body {
 #wrapper { overflow: hidden; }
 
 #signin:checked ~ #wrapper { height: 178px; }
-#signin:checked ~ #wrapper #arrow { left: 150px; }
+#signin:checked ~ #wrapper #arrow { left: 100px; }
 #signin:checked ~ button span { transform: translate3d(0,-72px,0); }
 
 #signup:checked ~ #wrapper { height: 262px; }
