@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 
 const db = firebase.firestore();
-const user = firebase.auth().currentUser;
+
 /*
 @NOTE: Object spreading
 {

@@ -26,10 +26,12 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "reset-css": "^2.2.1",
-    "sweetalert": "^2.0.8"
+    "sweetalert": "^2.0.8",
+    "sweetalert2": "^7.11.0",
+    "firebase": "4.8.0"
   },
   "scripts": {
-    "start": "nf start -p 3000",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
@@ -43,4 +45,5 @@
   "devDependencies": {
     "firebase": "^4.6.2"
   }
+
 }

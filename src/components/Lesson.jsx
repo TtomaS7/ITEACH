@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from '../actions';
-
 import '../css/Loading.css';
 import '../css/ModalWindow.css';
 import close from '../img/delete.svg';
@@ -84,7 +82,7 @@ class Lesson extends React.Component {
             >
             <div className='modalWindow'>
               <div className="head">
-                <a className="btn-close trigger" href="#">
+                <a className="btn-close trigger">
                   <img className="close" src={close} width="20" alt="close"/>
                 </a>
               </div>

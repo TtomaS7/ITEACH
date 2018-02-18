@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import * as actions from '../actions';
 
 
 import swal from 'sweetalert2';
 import firebase from 'firebase';
+
 import '../css/Authentication.css';
 
 
@@ -12,7 +11,10 @@ import '../css/Authentication.css';
 export default class Authentication extends React.Component {
   constructor() {
     super();
-    const provider = new firebase.auth.FacebookAuthProvider();
+
+    this.state = {
+      user: null
+    }
   }
 
   buttonSignUp = () => {
@@ -36,14 +38,13 @@ export default class Authentication extends React.Component {
     promise.catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
-    var errorMessage = error.message;
-    if (errorCode == 'auth/invalid-email') {
+    if (errorCode === 'auth/invalid-email') {
       swal('Упс....тут помилка(');
-    } else if (errorCode == 'auth/user-disabled') {
+    } else if (errorCode === 'auth/user-disabled') {
       swal('Упс....тут помилка(');
-    } else if (errorCode == 'auth/user-not-found') {
+    } else if (errorCode === 'auth/user-not-found') {
       swal('Упс....тут помилка(');
-    } else if (errorCode == 'auth/wrong-password') {
+    } else if (errorCode === 'auth/wrong-password') {
       swal('Упс....тут помилка(');
     } else {
       swal('Упс....тут помилка(')
@@ -62,22 +63,21 @@ export default class Authentication extends React.Component {
       promise.catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
-        var errorMessage = error.message;
-        if (errorCode == 'auth/weak-password') {
+        if (errorCode === 'auth/weak-password') {
           swal('Упс....тут помилка(');
-        } else if (errorCode == 'auth/expired-action-code') {
+        } else if (errorCode === 'auth/expired-action-code') {
           swal('Упс....тут помилка(');
-        } else if (errorCode == 'auth/invalid-action-code') {
+        } else if (errorCode === 'auth/invalid-action-code') {
           swal('Упс....тут помилка(');
-        } else if (errorCode == 'auth/user-disabled') {
+        } else if (errorCode === 'auth/user-disabled') {
           swal('Упс....тут помилка(');
-        } else if (errorCode == 'auth/user-not-found') {
+        } else if (errorCode === 'auth/user-not-found') {
           swal('Упс....тут помилка(');
-        } else if (errorCode == 'auth/email-already-in-use') {
+        } else if (errorCode === 'auth/email-already-in-use') {
           swal('Упс....тут помилка(');
-        } else if (errorCode == 'auth/invalid-email') {
+        } else if (errorCode === 'auth/invalid-email') {
           swal('Упс....тут помилка(');
-        } else if (errorCode == 'auth/operation-not-allowed') {
+        } else if (errorCode === 'auth/operation-not-allowed') {
           swal('Упс....тут помилка(')
         } else {
           swal('Упс....тут помилка(')
@@ -96,7 +96,11 @@ export default class Authentication extends React.Component {
   async login() {
     const provider = new firebase.auth.FacebookAuthProvider();
     const auth = firebase.auth();
-    const result = await auth.signInWithPopup(provider).cath(error => {
+    await auth.signInWithPopup(provider)
+    .then(result => {
+      console.log('result', result)
+    }).catch(error => {
+      console.error(error)
       // HANDLE ERROR
     })
   }
@@ -109,10 +113,8 @@ export default class Authentication extends React.Component {
           <form onSubmit={this.onFormSubmit}>
             <input defaultChecked id='signin' name='action' type='radio' value='signin' />
             <label htmlFor='signin' onClick={this.buttonSignIn}>Увійти</label>
-
             <input id='signup' name='action' type='radio' value='signup' />
             <label htmlFor='signup' onClick={this.buttonSignUp}>Зареєструватися</label>
-
             <div id='wrapper'>
               <div id='arrow'></div>
               <input id='email' className="main_input_login" ref={el => {this.txtLogin = el}} type="text" placeholder="Пошта" />

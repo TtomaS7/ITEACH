@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import firebase from './firebase.js';
-import storeReducers from './store/reducers';
-import { createStore, applyMiddleware } from 'redux'
-import registerServiceWorker from './registerServiceWorker';
 import * as actions from './actions';
 import Calendar from './components/Calendar';
 import Lessons from './components/Lessons';

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import swal from 'sweetalert2'
-import firebase from 'firebase';
+
 
 export default class AddLesson extends React.Component {
   constructor() {

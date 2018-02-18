@@ -1,7 +1,5 @@
 import firebase from 'firebase';
 
-const user = firebase.auth().currentUser;
-
 const DEFAULT_STATE = {
   selectedDate: new Date().toDateString(),
   loading: false,
